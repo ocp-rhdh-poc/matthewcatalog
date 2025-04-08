@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: API TEST N
+  name: apitestn
   title: API TEST T
   description: API TEST D
   tags:
