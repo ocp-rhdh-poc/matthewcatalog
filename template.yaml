@@ -28,6 +28,6 @@ spec:
       action: debug:log
       input:
         # Safer approach using config
-        message: "My callback URL is: {{ $env.NODE_ENV }}" 
+        message: "My callback URL is: {{ $env.GITHUB_WEBHOOK_SECRET }}" 
 
   
