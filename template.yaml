@@ -1,0 +1,31 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: API TEST N
+  title: API TEST T
+  description: API TEST D
+  tags:
+    - api 
+spec:
+  owner: rhdh
+  type: service
+  parameters:
+    - title: Provide Information for Application
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Repo name
+          default: my-liberty-app
+          ui:field: EntityNamePicker
+          maxLength: 23  
+
+  steps:
+    - id: log-var
+      name: Log the var
+      action: debug:log
+      input:
+        message: "My API key is: ${{ secrets.AUTH_GITHUB_CALLBACK_URL }}"
+  
