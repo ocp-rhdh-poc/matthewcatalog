@@ -27,5 +27,9 @@ spec:
       name: Log the var
       action: debug:log
       input:
-        message: "My API key is: ${{ secrets.AUTH_GITHUB_CALLBACK_URL }}"
+        # Safer approach using config
+        message: "My callback URL is: {{ config('app.github.callbackUrl') }}"
+        # OR if you need to verify it's working:
+        testMessage: "Testing env access - NODE_ENV is: {{ $env.NODE_ENV }}"
+
   
