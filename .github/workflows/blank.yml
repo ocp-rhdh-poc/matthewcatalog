@@ -37,19 +37,19 @@ jobs:
 
       #     echo "instana_url=$INSTANA_URL" >> $GITHUB_OUTPUT
 
-      - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
-        run: |
-          sed -i "s|\${{ INSTANA_PLACEHOLDER}}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
+      # - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
+      #   run: |
+      #     sed -i "s|\${{ INSTANA_PLACEHOLDER}}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
 
-      - name: Show updated catalog.yaml
-        run: cat catalog.yaml
+      # - name: Show updated catalog.yaml
+      #   run: cat catalog.yaml
 
-      - name: Commit and push changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add catalog.yaml
-          git commit -m "Update Instana URL in catalog.yaml"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Commit and push changes
+      #   run: |
+      #     git config user.name "github-actions"
+      #     git config user.email "github-actions@github.com"
+      #     git add catalog.yaml
+      #     git commit -m "Update Instana URL in catalog.yaml"
+      #     git push
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
