@@ -39,7 +39,7 @@ jobs:
 
       - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
         run: |
-          sed -i "s|\${{ INSTANA_PLACEHOLDER }}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
+          sed -i "s|INSTANA_PLACEHOLDER|${{ steps.call_instana.outputs.instana_url }}|g" catalog.yaml
 
       - name: Show updated catalog.yaml
         run: cat catalog.yaml
