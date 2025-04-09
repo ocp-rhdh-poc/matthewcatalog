@@ -33,7 +33,7 @@ spec:
   steps:
     - id: create-instana-monitoring
       name: Create Instana Monitoring
-      action: fetch:json
+      action: http:request
       input:
         method: POST
         url: https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application
@@ -50,4 +50,4 @@ spec:
             name: kubernetes.service.name
             operator: EQUALS
             entity: DESTINATION
-            value: ${{ parameters.serviceName }}
+            value: ${{ parameters.serviceName }} 
