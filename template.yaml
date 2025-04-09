@@ -28,6 +28,6 @@ spec:
       action: debug:log
       input:
         # Safer approach using config
-        message: "My callback URL is: ${{ env }}" 
+        message: "My callback URL is a: ${{ env }}" 
 
   
