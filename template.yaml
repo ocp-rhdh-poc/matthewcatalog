@@ -33,7 +33,7 @@ spec:
   steps:
     - id: create-instana-monitoring
       name: Create Instana Monitoring
-      action: http:request
+      action: http:backstage:request
       input:
         method: POST
         url: https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application
