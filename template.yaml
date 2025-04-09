@@ -36,7 +36,7 @@ spec:
       action: fetch:json
       input:
         method: POST
-        url: https://readwda.instana.io/api/application-monitoring/settings/application
+        url: https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application
         headers:
           Content-Type: application/json
           Authorization: apiToken ${{ parameters.apiToken }}
