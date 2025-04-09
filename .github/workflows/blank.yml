@@ -37,12 +37,12 @@ jobs:
 
       #     echo "instana_url=$INSTANA_URL" >> $GITHUB_OUTPUT
 
-      # - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
-      #   run: |
-      #     sed -i "s|\${{ INSTANA_PLACEHOLDER}}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
+      - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
+        run: |
+          sed -i "s|\${{ INSTANA_PLACEHOLDER}}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
 
-      # - name: Show updated catalog.yaml
-      #   run: cat catalog.yaml
+      - name: Show updated catalog.yaml
+        run: cat catalog.yaml
 
       # - name: Commit and push changes
       #   run: |
