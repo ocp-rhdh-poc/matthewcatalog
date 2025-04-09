@@ -28,6 +28,6 @@ spec:
       action: debug:log
       input:
         # Safer approach using config
-        message: "My callback URL is: ${{ env.AUTH_GITHUB_CALLBACK_URL }}" 
+        message: "My callback URL is: ${{ env }}" 
 
   
