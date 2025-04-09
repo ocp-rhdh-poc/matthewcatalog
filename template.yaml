@@ -36,7 +36,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        url: https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application
+        path: https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application
         headers:
           Content-Type: application/json
           Authorization: apiToken ${{ parameters.apiToken }}
