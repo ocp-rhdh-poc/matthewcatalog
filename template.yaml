@@ -10,24 +10,44 @@ spec:
   owner: rhdh
   type: service
   parameters:
-    - title: Provide Information for Application
+    - title: Instana Configuration
       required:
-        - name
+        - applicationName
+        - serviceName
       properties:
-        name:
-          title: Name
+        applicationName:
+          title: Application Name
           type: string
-          description: Repo name
-          default: my-liberty-app
-          ui:field: EntityNamePicker
-          maxLength: 23  
+          description: The name to display in Instana
+          ui:autofocus: true
+        serviceName:
+          title: Kubernetes Service Name
+          type: string
+          description: The service name to monitor (matches kubernetes.service.name)
+        apiToken:
+          title: Instana API Token
+          type: string
+          description: The authorization token for Instana API
+          ui:widget: password
 
   steps:
-    - id: log-var
-      name: Log the var
-      action: debug:log
+    - id: create-instana-monitoring
+      name: Create Instana Monitoring
+      action: fetch:json
       input:
-        # Safer approach using config
-        message: "My callback URL is a: ${{ env }}" 
-
-  
+        method: POST
+        url: https://readwda.instana.io/api/application-monitoring/settings/application
+        headers:
+          Content-Type: application/json
+          Authorization: apiToken ${{ parameters.apiToken }}
+        body:
+          label: ${{ parameters.applicationName }}
+          scope: INCLUDE_ALL_DOWNSTREAM
+          boundaryScope: ALL
+          builtInAlertIds: []
+          tagFilterExpression:
+            type: TAG_FILTER
+            name: kubernetes.service.name
+            operator: EQUALS
+            entity: DESTINATION
+            value: ${{ parameters.serviceName }}
