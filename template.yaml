@@ -27,8 +27,8 @@ spec:
         apiToken:
           title: Instana API Token
           type: string
-          description: The authorization token for Instana API
-          ui:widget: password
+          description: The authorization token for Instana API 
+          ui:field: Secret
 
   steps:
     - id: create-instana-monitoring
