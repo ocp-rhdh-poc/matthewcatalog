@@ -1,0 +1,55 @@
+name: Update Instana URL in catalog.yaml
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-instana:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Extract kubernetes-id from catalog.yaml
+        id: extract_kid
+        run: |
+          # Extract value from YAML using grep/cut
+          KID=$(grep 'backstage.io/kubernetes-id:' catalog.yaml | awk '{print $2}' | tr -d '"')
+
+          echo "kubernetes_id=$KID" >> $GITHUB_OUTPUT
+          echo "Extracted kubernetes-id: $KID"
+
+      # - name: Call Instana API using kubernetes-id
+      #   id: call_instana
+      #   run: |
+      #     KID="${{ steps.extract_kid.outputs.kubernetes_id }}"
+
+      #     echo "Sending POST request with kubernetes-id: $KID"
+
+      #     RESPONSE=$(curl -s -X POST https://example.com/instana-api \
+      #       -H "Content-Type: application/json" \
+      #       -d "{\"kubernetes_id\": \"$KID\"}")
+
+      #     echo "API Response: $RESPONSE"
+
+      #     INSTANA_URL=$(echo "$RESPONSE" | jq -r '.url')
+
+      #     echo "instana_url=$INSTANA_URL" >> $GITHUB_OUTPUT
+
+      - name: Replace INSTANA_PLACEHOLDER in catalog.yaml
+        run: |
+          sed -i "s|\${{ INSTANA_PLACEHOLDER}}|${{ steps.extract_kid.outputs.kubernetes_id }}|g" catalog.yaml
+
+      - name: Show updated catalog.yaml
+        run: cat catalog.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add catalog.yaml
+          git commit -m "Update Instana URL in catalog.yaml"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
