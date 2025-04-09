@@ -27,8 +27,8 @@ jobs:
 
       #     echo "Sending POST request with kubernetes-id: $KID"
 
-      #     RESPONSE=$(curl -s -X POST https://example.com/instana-api \
-      #       -H "Content-Type: application/json" \
+      #     RESPONSE=$(curl -s -X POST https://ibmdevsandbox-instanaibm.instana.io/api/application-monitoring/settings/application \
+      #       -H "Content-Type: application/json" -H "authorization: apiToken ${{ secrets.INSTANA_API_KEY }}" \
       #       -d "{\"kubernetes_id\": \"$KID\"}")
 
       #     echo "API Response: $RESPONSE"
