@@ -23,12 +23,7 @@ spec:
         serviceName:
           title: Kubernetes Service Name
           type: string
-          description: The service name to monitor (matches kubernetes.service.name)
-        apiToken:
-          title: Instana API Token
-          type: string
-          description: The authorization token for Instana API 
-          ui:field: Secret
+          description: The service name to monitor (matches kubernetes.service.name) 
 
   steps:
     - id: create-instana-monitoring
