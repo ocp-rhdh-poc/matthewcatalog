@@ -36,7 +36,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/instana/api/application-monitoring/settings/application 
+        path: /proxy/dream/api/application-monitoring/settings/application 
         body:
           label: ${{ parameters.applicationName }}
           scope: INCLUDE_ALL_DOWNSTREAM
