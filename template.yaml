@@ -37,6 +37,8 @@ spec:
       input:
         method: POST
         path: /proxy/dream/api/application-monitoring/settings/application  
+        headers:
+          content-type: 'application/json'
         body:
           label: ${{ parameters.applicationName }}
           scope: INCLUDE_ALL_DOWNSTREAM
