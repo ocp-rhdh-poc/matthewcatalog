@@ -20,6 +20,10 @@ spec:
           type: string
           description: The name to display in Instana
           ui:autofocus: true
+        namespace:
+          title: Kubernetes Namespace
+          type: string
+          description: The namespace name to monitor 
         serviceName:
           title: Kubernetes Service Name
           type: string
@@ -40,11 +44,25 @@ spec:
           boundaryScope: ALL
           builtInAlertIds: []
           tagFilterExpression:
-            type: TAG_FILTER
-            name: kubernetes.service.name
-            operator: EQUALS
-            entity: DESTINATION
-            value: ${{ parameters.serviceName }} 
+            type: EXPRESSION
+            logicalOperator: AND
+            elements:
+              - type: TAG_FILTER
+                name: kubernetes.namespace.name
+                operator: EQUALS
+                entity: DESTINATION
+                value: ${{ parameters.namespace }}
+              - type: TAG_FILTER
+                name: kubernetes.label
+                operator: EQUALS
+                entity: DESTINATION
+                key: rdhd.app
+                value: ${{ parameters.serviceName }} 
+            # type: TAG_FILTER
+            # name: kubernetes.service.name
+            # operator: EQUALS
+            # entity: DESTINATION
+            # value: ${{ parameters.serviceName }} 
     - id: log
       name: LOG ID
       action: debug:log
