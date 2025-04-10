@@ -36,7 +36,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/dream/api/application-monitoring/settings/application  
+        path: /proxy/instana/api/application-monitoring/settings/application  
         headers:
           content-type: 'application/json'
         body:
