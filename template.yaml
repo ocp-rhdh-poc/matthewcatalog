@@ -38,8 +38,7 @@ spec:
         method: POST
         path: /proxy/dream/api/application-monitoring/settings/application 
         headers: 
-          Content-Type: application/json
-          authorization: "apiToken kAhMrH7EQz2vXV5snAC6vadwda"
+          Content-Type: application/json 
         body:
           label: ${{ parameters.applicationName }}
           scope: INCLUDE_ALL_DOWNSTREAM
