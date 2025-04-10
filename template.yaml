@@ -31,7 +31,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/dream/api/application-monitoring/settings/application  
+        path: /proxy/instana/api/application-monitoring/settings/application  
         headers:
           content-type: 'application/json'
         body:
@@ -49,7 +49,7 @@ spec:
       name: LOG ID
       action: debug:log
       input: 
-        message: "Hello the id is ${{ steps.create-instana-monitoring.output.body.id }}"
+        message: "Hello the id is ${{ steps['create-instana-monitoring'].output.body.id }}"
 
 
 
